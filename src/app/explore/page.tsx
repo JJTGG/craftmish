@@ -1,4 +1,5 @@
 import Link from "next/link";
+import "./explore.css";
 
 const areas = [
   {
