@@ -9,13 +9,17 @@ const navigation = [
 
 export default function SiteHeader() {
   return (
-    <header>
-      <div>
-        <Link href="/" aria-label="Craftmish home">
+    <header className="site-header">
+      <div className="site-header-inner">
+        <Link
+          className="site-brand"
+          href="/"
+          aria-label="Craftmish home"
+        >
           Craftmish
         </Link>
 
-        <nav aria-label="Primary navigation">
+        <nav className="site-nav" aria-label="Primary navigation">
           {navigation.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
