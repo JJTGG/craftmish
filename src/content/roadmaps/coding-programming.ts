@@ -1,3 +1,5 @@
+export const codingProgrammingRoadmap = `
+
 Coding / Programming Roadmap
 
 A general roadmap for learning programming from computer fundamentals through practical software development and into a chosen specialization.
@@ -1693,3 +1695,4 @@ The objective is not simply to finish the roadmap.
 
 The objective is to move from knowing about programming → being able to program → being able to build → being able to demonstrate and improve that ability.
 
+`;
