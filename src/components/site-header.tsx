@@ -3,9 +3,10 @@ import Link from "next/link";
 const navigation = [
   { label: "Explore", href: "/explore" },
   { label: "Learn", href: "/roadmaps" },
-  { label: "Build", href: "/projects" },
-  { label: "Community", href: "/community" }
-];
+  { label: "Technologies", href: "/technologies" },
+  { label: "Concepts", href: "/concepts" },
+  { label: "Skills", href: "/skills" }
+] as const;
 
 export default function SiteHeader() {
   return (
@@ -16,7 +17,10 @@ export default function SiteHeader() {
           href="/"
           aria-label="Craftmish home"
         >
-          Craftmish
+          <span className="site-brand-mark" aria-hidden="true">
+            c
+          </span>
+          <span>craftmish</span>
         </Link>
 
         <nav className="site-nav" aria-label="Primary navigation">
