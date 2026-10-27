@@ -1,151 +1,224 @@
 import Link from "next/link";
 import "./home.css";
 
-const entryPoints = [
+const knowledgeAreas = [
   {
+    number: "01",
     label: "Technologies",
-    description: "Languages, frameworks, libraries, tools, databases, and platforms.",
+    description:
+      "Programming languages, frameworks, libraries, runtimes, databases, and developer tools.",
     href: "/technologies"
   },
   {
+    number: "02",
     label: "Concepts",
-    description: "The ideas and principles behind the things you build.",
+    description:
+      "The principles and mental models that explain how software and systems work.",
     href: "/concepts"
   },
   {
+    number: "03",
     label: "Skills",
-    description: "Practical abilities developed through understanding and repetition.",
+    description:
+      "Practical abilities developed through understanding, deliberate practice, and application.",
     href: "/skills"
   },
   {
-    label: "Resources",
-    description: "Documentation, articles, courses, books, and useful references.",
-    href: "/resources"
-  }
-];
-
-const buildPaths = [
-  {
-    label: "Roadmaps",
-    description: "Follow a connected path instead of collecting disconnected tutorials.",
+    number: "04",
+    label: "Learning paths",
+    description:
+      "Connected sequences that help you build knowledge without losing sight of practical outcomes.",
     href: "/roadmaps"
-  },
-  {
-    label: "Challenges",
-    description: "Practice a concept until you can actually use it.",
-    href: "/challenges"
-  },
-  {
-    label: "Projects",
-    description: "Turn knowledge into something real that can be shipped and reviewed.",
-    href: "/projects"
   }
-];
+] as const;
+
+const learningCycle = [
+  {
+    number: "01",
+    title: "Understand",
+    description: "Learn the concept and why it matters."
+  },
+  {
+    number: "02",
+    title: "Apply",
+    description: "Use the idea to solve a concrete problem."
+  },
+  {
+    number: "03",
+    title: "Observe",
+    description: "Inspect what your work actually produces."
+  },
+  {
+    number: "04",
+    title: "Verify",
+    description: "Check the result against meaningful criteria."
+  },
+  {
+    number: "05",
+    title: "Transfer",
+    description: "Apply the skill in a different context."
+  }
+] as const;
 
 export default function Home() {
   return (
     <main className="home">
-      <section className="home-intro">
-        <p className="eyebrow">Open knowledge for builders</p>
+      <section className="home-hero">
+        <div className="home-hero-copy">
+          <p className="eyebrow">
+            A connected system for developer growth
+          </p>
 
-        <h1>Learn. Build. Ship. Contribute.</h1>
+          <h1>
+            Understand how things work.
+            <span>Build what comes next.</span>
+          </h1>
 
-        <p className="home-description">
-          Craftmish connects technologies, concepts, skills, resources,
-          learning paths, challenges, and projects into one knowledge system.
-        </p>
+          <p className="home-lede">
+            Craftmish connects technical knowledge, practical skills,
+            and learning paths so you can move beyond collecting
+            tutorials and start developing a deeper understanding
+            of the systems you build.
+          </p>
 
-        <div className="home-search">
-          <label htmlFor="site-search">Search Craftmish</label>
-          <input
-            id="site-search"
-            type="search"
-            placeholder="Search anything..."
-          />
-        </div>
-      </section>
-
-      <section className="home-map" aria-labelledby="map-heading">
-        <div className="section-heading">
-          <p className="eyebrow">The knowledge map</p>
-          <h2 id="map-heading">Start anywhere. Follow the connections.</h2>
-        </div>
-
-        <div className="home-entry-grid">
-          {entryPoints.map((entry) => (
-            <Link className="home-entry" href={entry.href} key={entry.href}>
-              <span className="home-entry-index">
-                {String(entryPoints.indexOf(entry) + 1).padStart(2, "0")}
-              </span>
-
-              <div>
-                <h3>{entry.label}</h3>
-                <p>{entry.description}</p>
-              </div>
-
-              <span className="home-entry-arrow" aria-hidden="true">
-                →
-              </span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-thread" aria-labelledby="thread-heading">
-        <div className="section-heading">
-          <p className="eyebrow">Follow a thread</p>
-          <h2 id="thread-heading">Knowledge becomes useful when it connects.</h2>
-        </div>
-
-        <div className="home-thread-path" aria-label="Example learning thread">
-          <span>JavaScript</span>
-          <span aria-hidden="true">→</span>
-          <span>TypeScript</span>
-          <span aria-hidden="true">→</span>
-          <span>React</span>
-          <span aria-hidden="true">→</span>
-          <span>Next.js</span>
-          <span aria-hidden="true">→</span>
-          <span>Project</span>
-        </div>
-
-        <p className="home-thread-description">
-          A technology can lead to a concept. A concept can lead to a skill.
-          A skill can lead to a challenge. A challenge can become a project.
-        </p>
-      </section>
-
-      <section className="home-build" aria-labelledby="build-heading">
-        <div className="section-heading">
-          <p className="eyebrow">Make it practical</p>
-          <h2 id="build-heading">Move from knowing to doing.</h2>
-        </div>
-
-        <div className="home-build-list">
-          {buildPaths.map((item) => (
-            <Link className="home-build-item" href={item.href} key={item.href}>
-              <div>
-                <h3>{item.label}</h3>
-                <p>{item.description}</p>
-              </div>
-
+          <div className="home-actions">
+            <Link className="home-button home-button-primary" href="/explore">
+              Explore knowledge
               <span aria-hidden="true">→</span>
             </Link>
+
+            <Link className="home-button home-button-secondary" href="/roadmaps">
+              Explore learning paths
+            </Link>
+          </div>
+
+          <p className="home-hero-note">
+            From foundational concepts to complex engineering disciplines.
+          </p>
+        </div>
+
+        <aside className="home-hero-panel" aria-labelledby="approach-heading">
+          <p className="eyebrow">The Craftmish approach</p>
+
+          <h2 id="approach-heading">
+            Knowledge becomes useful when it connects.
+          </h2>
+
+          <p>
+            A technology leads to concepts. Concepts inform skills.
+            Skills become useful through practice and application.
+          </p>
+
+          <div className="home-connection-list">
+            <div>
+              <span>01</span>
+              <p>Discover what a technology does.</p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <p>Understand the principles behind it.</p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <p>Follow those connections into practical work.</p>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section className="home-knowledge" aria-labelledby="knowledge-heading">
+        <div className="home-section-heading">
+          <div>
+            <p className="eyebrow">Explore the knowledge system</p>
+
+            <h2 id="knowledge-heading">
+              Find what you need. Follow the connections.
+            </h2>
+          </div>
+
+          <p>
+            Software development spans languages, frameworks, data,
+            infrastructure, security, workflows, and much more.
+            Explore individual subjects and discover how they fit together.
+          </p>
+        </div>
+
+        <div className="home-area-grid">
+          {knowledgeAreas.map((area) => (
+            <Link
+              className="home-area-card"
+              href={area.href}
+              key={area.href}
+            >
+              <div className="home-area-top">
+                <span className="home-area-number">{area.number}</span>
+
+                <span aria-hidden="true" className="home-area-arrow">
+                  ↗
+                </span>
+              </div>
+
+              <h3>{area.label}</h3>
+
+              <p>{area.description}</p>
+
+              <span className="home-area-link">Explore section</span>
+            </Link>
           ))}
         </div>
       </section>
 
-      <section className="home-contribute" aria-labelledby="contribute-heading">
-        <p className="eyebrow">Open by default</p>
+      <section className="home-learning" aria-labelledby="learning-heading">
+        <div className="home-section-heading">
+          <div>
+            <p className="eyebrow">The learning model</p>
 
-        <h2 id="contribute-heading">
-          Learn from what others build.
-          <br />
-          Leave something useful behind.
-        </h2>
+            <h2 id="learning-heading">
+              Progress should mean more than finishing a page.
+            </h2>
+          </div>
 
-        <Link className="home-contribute-link" href="/community">
-          Explore the community →
+          <p>
+            Craftmish is being developed around a learning cycle that
+            connects understanding to practical results. Completion,
+            successful execution, and demonstrated competence are
+            different things.
+          </p>
+        </div>
+
+        <ol className="home-cycle">
+          {learningCycle.map((step) => (
+            <li className="home-cycle-step" key={step.number}>
+              <span className="home-cycle-number">{step.number}</span>
+
+              <h3>{step.title}</h3>
+
+              <p>{step.description}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section className="home-next" aria-labelledby="next-heading">
+        <div>
+          <p className="eyebrow">Start exploring</p>
+
+          <h2 id="next-heading">
+            Choose a starting point. Build from there.
+          </h2>
+
+          <p>
+            You do not need to follow one universal path.
+            Begin with a subject that matters to you and
+            follow the connections as your understanding grows.
+          </p>
+        </div>
+
+        <Link className="home-button home-button-primary" href="/explore">
+          Open the knowledge map
+          <span aria-hidden="true">→</span>
         </Link>
       </section>
     </main>
