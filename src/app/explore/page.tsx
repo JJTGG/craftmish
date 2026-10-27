@@ -5,66 +5,50 @@ const areas = [
   {
     title: "Technologies",
     description:
-      "Languages, frameworks, libraries, runtimes, tools, databases, and platforms.",
+      "Programming languages, frameworks, libraries, runtimes, databases, tools, and platforms.",
     href: "/technologies"
   },
   {
     title: "Concepts",
     description:
-      "The ideas and principles that explain how software actually works.",
+      "The principles and mental models that explain how software and systems work.",
     href: "/concepts"
   },
   {
     title: "Skills",
     description:
-      "Practical abilities you can develop, practice, and apply.",
+      "Practical abilities you can develop, practise, and apply across different contexts.",
     href: "/skills"
   },
   {
-    title: "Resources",
+    title: "Learning paths",
     description:
-      "Documentation, articles, courses, videos, books, and other useful material.",
-    href: "/resources"
-  },
-  {
-    title: "Roadmaps",
-    description:
-      "Structured paths connecting knowledge, skills, practice, and projects.",
+      "Structured roadmaps that connect foundational knowledge to more advanced subjects.",
     href: "/roadmaps"
-  },
-  {
-    title: "Challenges",
-    description:
-      "Practical problems designed to turn knowledge into ability.",
-    href: "/challenges"
-  },
-  {
-    title: "Projects",
-    description:
-      "Things you can build to apply what you learn and produce real work.",
-    href: "/projects"
   }
-];
+] as const;
 
 export default function ExplorePage() {
   return (
     <main className="content-page">
       <section className="content-intro">
-        <p className="eyebrow">Explore</p>
+        <p className="eyebrow">Explore Craftmish</p>
 
-        <h1>Find something to learn, build, or follow.</h1>
+        <h1>Understand the landscape. Follow the connections.</h1>
 
         <p>
-          Craftmish connects technologies, concepts, skills, resources,
-          roadmaps, challenges, and projects so you can move between them
-          instead of learning in isolation.
+          Software development spans languages, frameworks, databases,
+          APIs, infrastructure, security, testing, architecture,
+          workflows, and many other disciplines.
+          Explore the knowledge that underpins what you build,
+          then follow the connections between subjects.
         </p>
       </section>
 
       <section aria-labelledby="explore-areas">
         <div className="section-heading">
-          <p className="eyebrow">Knowledge map</p>
-          <h2 id="explore-areas">Explore by type.</h2>
+          <p className="eyebrow">Knowledge system</p>
+          <h2 id="explore-areas">Choose a starting point.</h2>
         </div>
 
         <div className="content-list">
