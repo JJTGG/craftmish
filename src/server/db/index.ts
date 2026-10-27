@@ -4,7 +4,11 @@ import { drizzle } from "drizzle-orm/node-postgres";
 import { Pool } from "pg";
 import * as schema from "./schema";
 
-function createDatabase() {
+const globalForCraftmish = globalThis as typeof globalThis & {
+  craftmishPool?: Pool;
+};
+
+function getPool(): Pool {
   const connectionString = process.env.DATABASE_URL;
 
   if (!connectionString) {
@@ -13,28 +17,16 @@ function createDatabase() {
     );
   }
 
-  const pool =
-    globalForCraftmish.craftmishPool ??
-    new Pool({
-      connectionString,
-      max: 3,
-      idleTimeoutMillis: 10_000,
-      connectionTimeoutMillis: 5_000,
-      allowExitOnIdle: true
-    });
+  globalForCraftmish.craftmishPool ??= new Pool({
+    connectionString,
+    max: 3,
+    idleTimeoutMillis: 10_000,
+    connectionTimeoutMillis: 5_000
+  });
 
-  globalForCraftmish.craftmishPool = pool;
-
-  return drizzle(pool, { schema });
+  return globalForCraftmish.craftmishPool;
 }
 
-const globalForCraftmish = globalThis as typeof globalThis & {
-  craftmishPool?: Pool;
-  craftmishDatabase?: ReturnType<typeof createDatabase>;
-};
-
 export function getDatabase() {
-  globalForCraftmish.craftmishDatabase ??= createDatabase();
-
-  return globalForCraftmish.craftmishDatabase;
+  return drizzle(getPool(), { schema });
 }
