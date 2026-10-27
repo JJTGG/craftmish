@@ -3,6 +3,7 @@ import Link from "next/link";
 const navigation = [
   { label: "Explore", href: "/explore" },
   { label: "Learn", href: "/roadmaps" },
+  { label: "Practice", href: "/practice" },
   { label: "Technologies", href: "/technologies" },
   { label: "Concepts", href: "/concepts" },
   { label: "Skills", href: "/skills" }
@@ -20,6 +21,7 @@ export default function SiteHeader() {
           <span className="site-brand-mark" aria-hidden="true">
             c
           </span>
+
           <span>craftmish</span>
         </Link>
 
