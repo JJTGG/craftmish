@@ -1,0 +1,40 @@
+import "server-only";
+
+import { drizzle } from "drizzle-orm/node-postgres";
+import { Pool } from "pg";
+import * as schema from "./schema";
+
+function createDatabase() {
+  const connectionString = process.env.DATABASE_URL;
+
+  if (!connectionString) {
+    throw new Error(
+      "DATABASE_URL is missing. Configure the pooled Neon connection string."
+    );
+  }
+
+  const pool =
+    globalForCraftmish.craftmishPool ??
+    new Pool({
+      connectionString,
+      max: 3,
+      idleTimeoutMillis: 10_000,
+      connectionTimeoutMillis: 5_000,
+      allowExitOnIdle: true
+    });
+
+  globalForCraftmish.craftmishPool = pool;
+
+  return drizzle(pool, { schema });
+}
+
+const globalForCraftmish = globalThis as typeof globalThis & {
+  craftmishPool?: Pool;
+  craftmishDatabase?: ReturnType<typeof createDatabase>;
+};
+
+export function getDatabase() {
+  globalForCraftmish.craftmishDatabase ??= createDatabase();
+
+  return globalForCraftmish.craftmishDatabase;
+}
